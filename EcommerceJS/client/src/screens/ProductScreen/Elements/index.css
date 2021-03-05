@@ -1,0 +1,22 @@
+.product__list {
+  margin-top: 8rem;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  grid-gap: 1rem;
+}
+
+.product__list .product__item {
+  padding: 1rem;
+  background-color: #25282c;
+
+  display: grid;
+  place-items: center;
+  text-align: center;
+  grid-gap: 0.8rem;
+}
+.product__list .product__item img {
+  width: 100%;
+  max-width: 18rem;
+  max-height: 15rem;
+  max-height: 12rem;
+}

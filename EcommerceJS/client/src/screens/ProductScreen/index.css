@@ -1,0 +1,8 @@
+/* ============================= Home ============================= */
+.products {
+  display: grid;
+  place-items: center;
+  padding-bottom: 3rem;
+
+  margin: 0 4rem 0 4rem;
+}

@@ -1,0 +1,29 @@
+.home-screen {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.home-screen a {
+  padding: 1rem 2rem 1rem 2rem;
+  width: auto;
+  background-color: #25282c;
+  color: rgb(214, 248, 252);
+}
+
+.home-screen a:hover {
+  background-color: #181a1d;
+  color: rgb(214, 248, 252);
+  transition: all 0.5s;
+}
+
+.home-screen .home-screen__contents {
+  display: grid;
+  grid-gap: 1rem;
+  text-align: center;
+  margin: 0 4rem 0 4rem;
+}
+
+.home-screen .home-screen__contents h1 {
+  font-size: 3rem;
+}

@@ -1,0 +1,35 @@
+/* ============================= Navbar ============================= */
+.navbar {
+  width: 100%;
+  height: 80px;
+  background-color: #25282c;
+  box-shadow: #25282c 0 0 20px 0;
+  position: fixed;
+  top: 0;
+  display: grid;
+  z-index: 9;
+}
+
+.navbar .navbar__contents {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 1rem;
+}
+
+.navbar .navbar__menu {
+  display: flex;
+}
+
+.navbar .navbar__menu li {
+  padding: 1rem;
+}
+.navbar .navbar__actions {
+  display: grid;
+  place-items: center;
+}
+
+.navbar .navbar__actions button {
+  max-width: 8rem;
+}
