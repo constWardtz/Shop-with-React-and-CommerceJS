@@ -1,9 +1,15 @@
 import React from "react";
-
+import { useHistory } from "react-router-dom";
 import "./index.css";
 
 const CartScreen = ({ cart, emptyCart, removeFromCart, updateCartQty }) => {
+  const history = useHistory();
+
   if (!cart.line_items) return <h1 className="loader">Loading...</h1>;
+
+  const goToCheckout = () => {
+    history.push("/checkout");
+  };
 
   return (
     <div className="cart">
@@ -12,7 +18,9 @@ const CartScreen = ({ cart, emptyCart, removeFromCart, updateCartQty }) => {
           <button onClick={emptyCart} className="cart--action">
             Empty Cart
           </button>
-          <button className="cart--action active">Make Purchase</button>
+          <button className="cart--action active" onClick={goToCheckout}>
+            Make Purchase
+          </button>
         </div>
         <div className="cart__heading">
           <h1>Img</h1>

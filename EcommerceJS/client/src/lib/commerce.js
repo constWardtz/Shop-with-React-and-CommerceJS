@@ -5,6 +5,6 @@ export const commerce = new Commerce(
   true
 );
 
-export const commerce_checkout = new Commerce(
+export const commercePayPal = new Commerce(
   process.env.REACT_APP_CHEC_SANDBOX_KEY
 );
