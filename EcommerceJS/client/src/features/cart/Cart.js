@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { addToCart } from "./cartSlice";
+import { addToCartSlice } from "./cartSlice";
 import { useSelector, useDispatch } from "react-redux";
 
 import "./index.css";
@@ -26,7 +26,7 @@ const Cart = () => {
           value={item}
           onChange={onChangeHandler}
         />
-        <button onClick={() => dispatch(addToCart({ item }))}>
+        <button onClick={() => dispatch(addToCartSlice({ item }))}>
           Add to Cart
         </button>
       </div>

@@ -1,11 +1,13 @@
-import React, { useEffect, useState, useRef } from "react";
-import { commerce } from "./lib/commerce";
+import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
   Switch,
-  useHistory,
+  Redirect,
 } from "react-router-dom";
+
+import { commerce } from "./lib/commerce";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   ProductScreen,
@@ -18,18 +20,24 @@ import {
 
 import Cart from "./features/cart/Cart";
 
+import { addToCartSlice } from "./features/cart/cartSlice";
+import { currentItemSlice } from "./features/currentItem/currentItemSlice";
+
 const App = () => {
-  const history = useHistory();
+  const dispatch = useDispatch();
+  const cartState = useSelector((state) => state.cart);
+  const currentItemState = useSelector((state) => state.current.item);
+
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [orderDetails, setOrderDetails] = useState({});
   const [lineItems, setLineItems] = useState({});
-  const [singleProduct, setSingleProduct] = useState([]);
   const [token, setToken] = useState("");
 
   const handleLineItems = () => {
     // cart.line_items.map(({ id, quantity }) => setLineItems({ id, quantity }));
   };
+  console.log("cartState", cartState);
 
   const [order] = useState({
     // line_items: {
@@ -85,8 +93,10 @@ const App = () => {
   };
 
   const handleAddToCart = async (productId) => {
-    const { cart } = await commerce.cart.add(productId, 1);
+    const response = await commerce.cart.add(productId, 1);
+    const { cart, success, event, product_id } = response;
     setCart(cart);
+    dispatch(addToCartSlice({ success, event, product_id }));
   };
 
   const handleRefreshCart = async () => {
@@ -109,11 +119,12 @@ const App = () => {
     setCart(cart);
   };
 
-  const handleProductOverview = async (id) => {
-    const product = products.find((product) => product.id === id);
-    product && setSingleProduct(product);
-    // history.push(`/productOverview/${id}`);
+  const handleProductOverview = (id) => {
+    const item = products.find((product) => product.id === id);
+    dispatch(currentItemSlice(item));
   };
+
+  console.log("currentItemState", currentItemState);
 
   const handleGenerateToken = () => {
     try {
@@ -142,10 +153,6 @@ const App = () => {
   //   //   setOrderDetails({ [id]: { quantity, variants: { color: "blue" } } });
   //   // });
   // };
-
-  console.log("=========CART========>>>>>", cart);
-  console.log("=========PRODUCTS========>>>>>", products);
-  console.log("=========singleProduct========>>>>>", singleProduct);
 
   useEffect(() => {
     handleFetchProducts();
@@ -205,13 +212,17 @@ const App = () => {
             <CheckoutScreen />
           </Route>
 
-          <Route path="/productOverview/:id">
-            <Navbar totalItems={cart.total_items} />
-            <ProductOverviewScreen
-              singleProduct={singleProduct}
-              addToCart={handleAddToCart}
-            />
-          </Route>
+          {!currentItemState ? (
+            <Redirect to="/products" />
+          ) : (
+            <Route path="/productOverview/:id">
+              <Navbar totalItems={cart.total_items} />
+              <ProductOverviewScreen
+                singleProduct={currentItemState}
+                addToCart={handleAddToCart}
+              />
+            </Route>
+          )}
 
           <Route path="/features/cart">
             <Navbar totalItems={cart.total_items} />
