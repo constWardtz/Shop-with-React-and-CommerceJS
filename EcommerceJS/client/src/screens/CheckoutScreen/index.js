@@ -1,5 +1,4 @@
 import React, { useRef, useEffect } from "react";
-import { commerce_checkout } from "../../lib/commerce";
 
 const CheckoutScreen = () => {
   const elementExist = document.querySelector(`#paypal-button`);

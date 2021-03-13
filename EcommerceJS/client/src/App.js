@@ -18,10 +18,7 @@ import {
   ProductOverviewScreen,
 } from "./screens";
 
-import Cart from "./features/cart/Cart";
-
-import { addToCartSlice } from "./features/cart/cartSlice";
-import { currentItemSlice } from "./features/currentItem/currentItemSlice";
+import { currentItemSlice, addToCartSlice } from "./features";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -223,11 +220,6 @@ const App = () => {
               />
             </Route>
           )}
-
-          <Route path="/features/cart">
-            <Navbar totalItems={cart.total_items} />
-            <Cart />
-          </Route>
         </Switch>
       </Router>
     </>
