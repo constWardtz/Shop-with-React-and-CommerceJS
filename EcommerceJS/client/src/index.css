@@ -9,7 +9,7 @@ body,
 html {
   scroll-behavior: smooth;
   background-color: #151618;
-  color: rgb(214, 248, 252);
+  color: rgba(231, 231, 231, 0.781);
 }
 
 a {
@@ -36,7 +36,7 @@ li {
 }
 
 a {
-  color: rgb(214, 248, 252);
+  color: rgba(231, 231, 231, 0.781);
 }
 
 button {

@@ -2,11 +2,11 @@
   margin-top: 8rem;
   display: grid;
   grid-template-columns: repeat(4, auto);
-  grid-gap: 1rem;
+  grid-gap: 1.5rem;
 }
 
 .product__list .product__item {
-  padding: 1rem;
+  padding: 1.5rem;
   background-color: #25282c;
 
   display: grid;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { commerce, commercePayPal } from "./lib/commerce";
+import { commerce } from "./lib/commerce";
 import {
   BrowserRouter as Router,
   Route,
@@ -15,6 +15,8 @@ import {
   CheckoutScreen,
   ProductOverviewScreen,
 } from "./screens";
+
+import Cart from "./features/cart/Cart";
 
 const App = () => {
   const history = useHistory();
@@ -184,7 +186,6 @@ const App = () => {
             <Navbar totalItems={cart.total_items} />
             <ProductScreen
               products={products}
-              addToCart={handleAddToCart}
               handleProductOverview={handleProductOverview}
             />
           </Route>
@@ -210,6 +211,11 @@ const App = () => {
               singleProduct={singleProduct}
               addToCart={handleAddToCart}
             />
+          </Route>
+
+          <Route path="/features/cart">
+            <Navbar totalItems={cart.total_items} />
+            <Cart />
           </Route>
         </Switch>
       </Router>

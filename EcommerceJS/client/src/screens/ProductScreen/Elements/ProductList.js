@@ -4,7 +4,7 @@ import "./index.css";
 
 import { truncate } from "../../../utils/truncate";
 
-const ProductList = ({ products, addToCart, onProductOverview }) => {
+const ProductList = ({ products, onProductOverview }) => {
   if (!products.length) return <h1 className="loader">Loading...</h1>;
 
   return (
@@ -25,7 +25,6 @@ const ProductList = ({ products, addToCart, onProductOverview }) => {
                   __html: truncate(description),
                 }}
               ></p>
-              <button onClick={() => addToCart(id)}>Add To Cart</button>
             </div>
           </Link>
         ))}
